@@ -1,0 +1,4 @@
+{
+  "plugins": ["../dist/index.js"],
+  "comments": true
+}
