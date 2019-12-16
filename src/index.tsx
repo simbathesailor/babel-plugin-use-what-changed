@@ -18,26 +18,50 @@ function Test(babel: any) {
   return {
     visitor: {
       Identifier: {
-        exit(path: any) {
+        exit(path: any, state: any) {
           if (SetToSupport.indexOf(path.node.name) !== -1) {
-            console.log('path.node.name', path.node.name);
+            console.log(
+              'path.node.name',
+              path.node.name,
+              path.node.loc.start.line
+            );
+            console.log('state.isDoneAddingImport', state.isDoneAddingImport);
+            console.log(
+              'state.lineNoWhereCallNeedToBeAdded',
+              JSON.stringify(state.lineNoWhereCallNeedToBeAdded, null, 2)
+            );
           }
         },
       },
       Program: {
-        enter(path: any) {
+        enter(path: any, state: any) {
           console.log('path.nodesadddcasdc', t, path.get('body'));
 
           path.container.comments.map((commentObj: any) => {
             if (commentObj.value.trim() === 'uwc-debug') {
-              const ast = buildRequire({
-                IMPORT_NAME: t.identifier(
-                  'simbathesailor_useWhatChangedImport'
-                ),
-                SOURCE: t.stringLiteral('@simbathesailor/use-what-changed'),
-              });
+              console.log('commentObj.line no', commentObj.loc.start.line);
+              if (!(state.myOwn === 'doneAddingImport')) {
+                const ast = buildRequire({
+                  IMPORT_NAME: t.identifier(
+                    'simbathesailor_useWhatChangedImport'
+                  ),
+                  SOURCE: t.stringLiteral('@simbathesailor/use-what-changed'),
+                });
 
-              path.unshiftContainer('body', ast);
+                path.unshiftContainer('body', ast);
+                state.isDoneAddingImport = true;
+              }
+              if (state.lineNoWhereCallNeedToBeAdded) {
+                state.lineNoWhereCallNeedToBeAdded = {
+                  ...state.lineNoWhereCallNeedToBeAdded,
+                  [commentObj.loc.start.line]: false,
+                };
+              } else {
+                state.lineNoWhereCallNeedToBeAdded = {
+                  [commentObj.loc.start.line]: false,
+                };
+              }
+
               console.log(commentObj.type, commentObj.value, commentObj);
             }
           });

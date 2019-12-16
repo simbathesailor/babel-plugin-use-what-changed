@@ -3,11 +3,16 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 const App = () => {
-  // comment hsxssdsdadkjkkd
+  // comment hsxsslklbccbzc
   // uwc-debug
   React.useEffect(() => {
     console.log('I will run on every render');
-  });
+  }, []);
+
+  // uwc-debug
+  React.useEffect(() => {
+    console.log('I will run on every render');
+  }, []);
   return <div>Hello world</div>;
 };
 
