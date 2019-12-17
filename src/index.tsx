@@ -69,7 +69,7 @@ function Test(babel: any) {
       Program: {
         exit: function() {},
         enter: function(path: any, state: any) {
-          path.container.comments.map((commentObj: any) => {
+          path.container.comments.forEach((commentObj: any) => {
             if (commentObj.value.trim() === 'uwc-debug') {
               if (!(state.myOwn === 'doneAddingImport')) {
                 const ast = buildRequire({
