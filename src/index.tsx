@@ -1,45 +1,76 @@
 import template from 'babel-template';
+import * as babylon from 'babylon';
 
 process.env.BABEL_DISABLE_CACHE = '1';
 // import generate from 'babel-generator';
 
+// var [IMPORT_NAME] = require(SOURCE);
+//   var ____useWhatChanged = IMPORT_NAME.useWhatChanged
 const buildRequire = template(`
-  var [IMPORT_NAME] = require(SOURCE);
+  var IMPORT_NAME = require(SOURCE);
   var ____useWhatChanged = IMPORT_NAME.useWhatChanged
 `);
 
 const SetToSupport = ['useEffect', 'useCallback', 'useMemo'];
 
 function Test(babel: any) {
-  // console.log('TCL: Test -> babel', babel.types);
   const { types: t } = babel;
-  // console.log('t', t);
-  // plugin contents
   return {
     visitor: {
-      Identifier: {
-        exit(path: any, state: any) {
-          if (SetToSupport.indexOf(path.node.name) !== -1) {
-            console.log(
-              'path.node.name',
-              path.node.name,
-              path.node.loc.start.line
-            );
-            console.log('state.isDoneAddingImport', state.isDoneAddingImport);
-            console.log(
-              'state.lineNoWhereCallNeedToBeAdded',
-              JSON.stringify(state.lineNoWhereCallNeedToBeAdded, null, 2)
-            );
-          }
-        },
-      },
-      Program: {
-        enter(path: any, state: any) {
-          console.log('path.nodesadddcasdc', t, path.get('body'));
+      Identifier(path: any, state: any) {
+        if (SetToSupport.indexOf(path.node.name) !== -1) {
+          Object.keys(state.lineNoWhereCallNeedToBeAdded).forEach(lineNo => {
+            if (!state.lineNoWhereCallNeedToBeAdded[lineNo].done) {
+              if (
+                parseInt(path.node.loc.start.line, 10) ===
+                parseInt(lineNo) + 1
+              ) {
+                const parentMemberCallExpression = path.findParent(
+                  (path: any) => path.isCallExpression()
+                );
 
+                const parentNode = parentMemberCallExpression.node;
+                const dependencyArgs = parentNode.arguments[1];
+                if (dependencyArgs) {
+                  if (
+                    dependencyArgs.type === 'ArrayExpression' &&
+                    dependencyArgs.elements.length > 0
+                  ) {
+                    const collectedNames = dependencyArgs.elements.reduce(
+                      (acc: any, elem: any) => {
+                        acc.push(elem.name);
+                        return acc;
+                      },
+                      []
+                    );
+
+                    const templateuseWhatChangedFUnctionCall = `
+                    ____useWhatChanged([${collectedNames.join(
+                      ','
+                    )}], "${collectedNames.join(',')}")
+                    `;
+                    const useWhatChangedAst = babylon.parse(
+                      templateuseWhatChangedFUnctionCall
+                    );
+                    state.lineNoWhereCallNeedToBeAdded[
+                      lineNo
+                    ].collectionNames = collectedNames;
+
+                    parentMemberCallExpression.insertBefore(useWhatChangedAst);
+                    state.lineNoWhereCallNeedToBeAdded[lineNo].done = true;
+                  }
+                }
+              }
+            }
+          });
+        }
+      },
+
+      Program: {
+        exit: function() {},
+        enter: function(path: any, state: any) {
           path.container.comments.map((commentObj: any) => {
             if (commentObj.value.trim() === 'uwc-debug') {
-              console.log('commentObj.line no', commentObj.loc.start.line);
               if (!(state.myOwn === 'doneAddingImport')) {
                 const ast = buildRequire({
                   IMPORT_NAME: t.identifier(
@@ -54,15 +85,17 @@ function Test(babel: any) {
               if (state.lineNoWhereCallNeedToBeAdded) {
                 state.lineNoWhereCallNeedToBeAdded = {
                   ...state.lineNoWhereCallNeedToBeAdded,
-                  [commentObj.loc.start.line]: false,
+                  [commentObj.loc.start.line]: {
+                    done: false,
+                  },
                 };
               } else {
                 state.lineNoWhereCallNeedToBeAdded = {
-                  [commentObj.loc.start.line]: false,
+                  [commentObj.loc.start.line]: {
+                    done: false,
+                  },
                 };
               }
-
-              console.log(commentObj.type, commentObj.value, commentObj);
             }
           });
         },

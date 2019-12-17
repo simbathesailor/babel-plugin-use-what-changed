@@ -1,0 +1,542 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20191217.220017.50535.0.001.json",
+    "dumpEventTime": "2019-12-17T22:00:17Z",
+    "dumpEventTimeStamp": "1576600217238",
+    "processId": 50535,
+    "cwd": "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example",
+    "commandLine": [
+      "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node",
+      "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example/node_modules/.bin/parcel",
+      "index.html"
+    ],
+    "nodejsVersion": "v12.10.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "darwin",
+    "componentVersions": {
+      "node": "12.10.0",
+      "v8": "7.6.303.29-node.16",
+      "uv": "1.31.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0.tar.gz"
+    },
+    "osName": "Darwin",
+    "osRelease": "18.6.0",
+    "osVersion": "Darwin Kernel Version 18.6.0: Thu Apr 25 23:16:27 PDT 2019; root:xnu-4903.261.4~2/RELEASE_X86_64",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 106382090,
+        "nice": 0,
+        "sys": 80663270,
+        "idle": 494583720,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3487270,
+        "nice": 0,
+        "sys": 3295820,
+        "idle": 674620360,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 94938820,
+        "nice": 0,
+        "sys": 45653940,
+        "idle": 540813010,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3391140,
+        "nice": 0,
+        "sys": 2719940,
+        "idle": 675292060,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 82026660,
+        "nice": 0,
+        "sys": 34393510,
+        "idle": 564985170,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3425780,
+        "nice": 0,
+        "sys": 2407850,
+        "idle": 675569200,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 69381540,
+        "nice": 0,
+        "sys": 25489520,
+        "idle": 586533850,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3432550,
+        "nice": 0,
+        "sys": 2127140,
+        "idle": 675842820,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 59860900,
+        "nice": 0,
+        "sys": 19958490,
+        "idle": 601585100,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3447720,
+        "nice": 0,
+        "sys": 1901820,
+        "idle": 676052650,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 53770320,
+        "nice": 0,
+        "sys": 16566990,
+        "idle": 611066770,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+        "speed": 2600,
+        "user": 3434980,
+        "nice": 0,
+        "sys": 1715170,
+        "idle": 676251710,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "lo0",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::1",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 1
+      },
+      {
+        "name": "en5",
+        "internal": false,
+        "mac": "ac:de:48:00:11:22",
+        "address": "fe80::aede:48ff:fe00:1122",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 8
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "a4:83:e7:60:95:fb",
+        "address": "fe80::14b0:e4e3:5f97:ad55",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 10
+      },
+      {
+        "name": "en0",
+        "internal": false,
+        "mac": "a4:83:e7:60:95:fb",
+        "address": "192.168.0.109",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "awdl0",
+        "internal": false,
+        "mac": "da:f5:9e:67:fc:d8",
+        "address": "fe80::d8f5:9eff:fe67:fcd8",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 12
+      },
+      {
+        "name": "utun0",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::fc74:71b2:7561:697a",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 18
+      }
+    ],
+    "host": "IN-ANICHA-MAC.local"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00000001001461d0",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, v8::Local<v8::String>) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000100078d95",
+      "symbol": "node::OnFatalError(char const*, char const*) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x000000010016e8d7",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x000000010016e873",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f2605",
+      "symbol": "v8::internal::Heap::FatalProcessOutOfMemory(char const*) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f3d2d",
+      "symbol": "v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002f0ae6",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002eea3c",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002fa114",
+      "symbol": "v8::internal::Heap::AllocateRawWithLightRetry(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002fa18f",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001002c8737",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001005e8f67",
+      "symbol": "v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000001009288f9",
+      "symbol": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x0000000100929965",
+      "symbol": "Builtins_StringAdd_CheckNone [/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node]"
+    },
+    {
+      "pc": "0x00000a1cf74973de",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2167238656,
+    "totalCommittedMemory": 2154984936,
+    "usedMemory": 2138536416,
+    "availableMemory": 50148776,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 31744,
+        "capacity": 261832,
+        "used": 31432,
+        "available": 230400
+      },
+      "new_space": {
+        "memorySize": 19922944,
+        "committedMemory": 8892936,
+        "capacity": 9949616,
+        "used": 1060896,
+        "available": 8888720
+      },
+      "old_space": {
+        "memorySize": 2112729088,
+        "committedMemory": 2112178936,
+        "capacity": 2104932224,
+        "used": 2104428824,
+        "available": 503400
+      },
+      "code_space": {
+        "memorySize": 1474560,
+        "committedMemory": 1214240,
+        "capacity": 942880,
+        "used": 942880,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 2101248,
+        "committedMemory": 1918408,
+        "capacity": 1425520,
+        "used": 1425520,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 30699520,
+        "committedMemory": 30699520,
+        "capacity": 30643408,
+        "used": 30643408,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3456,
+        "used": 3456,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 9949616,
+        "used": 0,
+        "available": 9949616
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 94.0629,
+    "kernelCpuSeconds": 3.59877,
+    "cpuConsumptionPercent": 107.321,
+    "maxRss": 2273874804736,
+    "pageFaults": {
+      "IORequired": 25,
+      "IONotRequired": 747799
+    },
+    "fsActivity": {
+      "reads": 0,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "TERM_PROGRAM": "Apple_Terminal",
+    "NODE": "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node",
+    "INIT_CWD": "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example",
+    "NVM_CD_FLAGS": "-q",
+    "npm_package_devDependencies_typescript": "^3.4.5",
+    "npm_config_version_git_tag": "true",
+    "SHELL": "/bin/zsh",
+    "TERM": "xterm-256color",
+    "TMPDIR": "/var/folders/tz/gjdj5wwj4n71lzdz1pt10ntc0000gq/T/",
+    "Apple_PubSub_Socket_Render": "/private/tmp/com.apple.launchd.Kx4OT1YIGb/Render",
+    "npm_config_init_license": "MIT",
+    "TERM_PROGRAM_VERSION": "421.2",
+    "npm_config_init_author_email": "anilchaudhary453@gmail.com",
+    "TERM_SESSION_ID": "93059ECE-525E-4A33-A0D7-40B6B338051B",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "ZSH": "/Users/anil.chaudhary/.oh-my-zsh",
+    "USER": "anil.chaudhary",
+    "NVM_DIR": "/Users/anil.chaudhary/.nvm",
+    "npm_package_dependencies__simbathesailor_use_what_changed": "^0.1.11",
+    "npm_package_devDependencies__types_react": "^16.9.11",
+    "npm_package_license": "MIT",
+    "npm_package_devDependencies__babel_core": "^7.7.5",
+    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.UBQWHhLvxH/Listeners",
+    "__CF_USER_TEXT_ENCODING": "0x1F7:0x0:0x0",
+    "npm_execpath": "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/lib/node_modules/yarn/bin/yarn.js",
+    "PAGER": "less",
+    "LSCOLORS": "Gxfxcxdxbxegedabagacad",
+    "npm_package_devDependencies__types_react_dom": "^16.8.4",
+    "PATH": "/var/folders/tz/gjdj5wwj4n71lzdz1pt10ntc0000gq/T/yarn--1576600125945-0.562671840968131:/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example/node_modules/.bin:/Users/anil.chaudhary/.config/yarn/link/node_modules/.bin:/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node_modules/npm/bin/node-gyp-bin:/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
+    "_": "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example/node_modules/.bin/parcel",
+    "npm_package_alias_react": "../node_modules/react",
+    "npm_package_dependencies_react_app_polyfill": "^1.0.0",
+    "PWD": "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example",
+    "npm_lifecycle_event": "start",
+    "npm_package_name": "example",
+    "npm_package_scripts_build": "parcel build index.html",
+    "npm_package_scripts_start": "parcel index.html",
+    "npm_config_version_commit_hooks": "true",
+    "XPC_FLAGS": "0x0",
+    "npm_package_devDependencies_parcel": "^1.12.4",
+    "npm_config_bin_links": "true",
+    "npm_package_main": "index.js",
+    "XPC_SERVICE_NAME": "0",
+    "npm_package_version": "1.0.0",
+    "SHLVL": "2",
+    "HOME": "/Users/anil.chaudhary",
+    "npm_package_alias_scheduler_tracing": "../node_modules/scheduler/tracing-profiling",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "true",
+    "npm_config_version_git_message": "v%s",
+    "LOGNAME": "anil.chaudhary",
+    "LESS": "-R",
+    "YARN_WRAP_OUTPUT": "false",
+    "npm_lifecycle_script": "parcel index.html",
+    "LC_CTYPE": "UTF-8",
+    "npm_package_alias_react_dom": "../node_modules/react-dom/profiling",
+    "NVM_BIN": "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin",
+    "npm_config_version_git_sign": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_user_agent": "yarn/1.17.3 npm/? node/v12.10.0 darwin x64",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_ignore_optional": "",
+    "SECURITYSESSIONID": "186a8",
+    "npm_config_init_author_name": "simbathesailor",
+    "npm_node_execpath": "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node",
+    "npm_config_version_tag_prefix": "v",
+    "UV_THREADPOOL_SIZE": "16",
+    "NODE_ENV": "development",
+    "HMR_PORT": "49249",
+    "HMR_HOSTNAME": "",
+    "BABEL_DISABLE_CACHE": "1"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 24576,
+      "hard": "unlimited"
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": 67104768
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 1418,
+      "hard": 2128
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "/Users/anil.chaudhary/.nvm/versions/node/v12.10.0/bin/node",
+    "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+    "/usr/lib/libSystem.B.dylib",
+    "/usr/lib/libc++.1.dylib",
+    "/usr/lib/libobjc.A.dylib",
+    "/usr/lib/libDiagnosticMessagesClient.dylib",
+    "/usr/lib/libicucore.A.dylib",
+    "/usr/lib/libz.1.dylib",
+    "/usr/lib/libc++abi.dylib",
+    "/usr/lib/system/libcache.dylib",
+    "/usr/lib/system/libcommonCrypto.dylib",
+    "/usr/lib/system/libcompiler_rt.dylib",
+    "/usr/lib/system/libcopyfile.dylib",
+    "/usr/lib/system/libcorecrypto.dylib",
+    "/usr/lib/system/libdispatch.dylib",
+    "/usr/lib/system/libdyld.dylib",
+    "/usr/lib/system/libkeymgr.dylib",
+    "/usr/lib/system/liblaunch.dylib",
+    "/usr/lib/system/libmacho.dylib",
+    "/usr/lib/system/libquarantine.dylib",
+    "/usr/lib/system/libremovefile.dylib",
+    "/usr/lib/system/libsystem_asl.dylib",
+    "/usr/lib/system/libsystem_blocks.dylib",
+    "/usr/lib/system/libsystem_c.dylib",
+    "/usr/lib/system/libsystem_configuration.dylib",
+    "/usr/lib/system/libsystem_coreservices.dylib",
+    "/usr/lib/system/libsystem_darwin.dylib",
+    "/usr/lib/system/libsystem_dnssd.dylib",
+    "/usr/lib/system/libsystem_info.dylib",
+    "/usr/lib/system/libsystem_m.dylib",
+    "/usr/lib/system/libsystem_malloc.dylib",
+    "/usr/lib/system/libsystem_networkextension.dylib",
+    "/usr/lib/system/libsystem_notify.dylib",
+    "/usr/lib/system/libsystem_sandbox.dylib",
+    "/usr/lib/system/libsystem_secinit.dylib",
+    "/usr/lib/system/libsystem_kernel.dylib",
+    "/usr/lib/system/libsystem_platform.dylib",
+    "/usr/lib/system/libsystem_pthread.dylib",
+    "/usr/lib/system/libsystem_symptoms.dylib",
+    "/usr/lib/system/libsystem_trace.dylib",
+    "/usr/lib/system/libunwind.dylib",
+    "/usr/lib/system/libxpc.dylib",
+    "/Users/anil.chaudhary/opensource/babel-plugin-use-what-changed/example/node_modules/deasync/bin/darwin-x64-node-12/deasync.node"
+  ]
+}
