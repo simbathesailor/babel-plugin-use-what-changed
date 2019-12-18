@@ -26,7 +26,10 @@ function Test(babel: any) {
   return {
     visitor: {
       Identifier(path: any, state: any) {
-        if (SetToSupport.indexOf(path.node.name) !== -1) {
+        if (
+          SetToSupport.indexOf(path.node.name) !== -1 &&
+          isObject(state.lineNoWhereCallNeedToBeAdded)
+        ) {
           Object.keys(state.lineNoWhereCallNeedToBeAdded).forEach(lineNo => {
             if (!state.lineNoWhereCallNeedToBeAdded[lineNo].done) {
               if (
