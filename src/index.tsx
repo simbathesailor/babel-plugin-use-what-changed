@@ -6,6 +6,14 @@ process.env.BABEL_DISABLE_CACHE = '1';
 
 // var [IMPORT_NAME] = require(SOURCE);
 //   var ____useWhatChanged = IMPORT_NAME.useWhatChanged
+
+/**
+ *
+ * Check whether the dependency item is an object. then
+ */
+const isObject = (t: any) => {
+  return Object.prototype.toString.call(t) === '[object Object]';
+};
 const buildRequire = template(`
   var IMPORT_NAME = require(SOURCE);
   var ____useWhatChanged = IMPORT_NAME.useWhatChanged
@@ -82,7 +90,7 @@ function Test(babel: any) {
                 path.unshiftContainer('body', ast);
                 state.isDoneAddingImport = true;
               }
-              if (state.lineNoWhereCallNeedToBeAdded) {
+              if (isObject(state.lineNoWhereCallNeedToBeAdded)) {
                 state.lineNoWhereCallNeedToBeAdded = Object.assign(
                   {},
                   state.lineNoWhereCallNeedToBeAdded,
