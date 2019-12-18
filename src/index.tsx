@@ -21,7 +21,7 @@ const buildRequire = template(`
 
 const SetToSupport = ['useEffect', 'useCallback', 'useMemo'];
 
-export default function Test(babel: any) {
+function Test(babel: any) {
   const { types: t } = babel;
   return {
     visitor: {
@@ -122,3 +122,5 @@ export default function Test(babel: any) {
     },
   };
 }
+
+module.exports = Test;
