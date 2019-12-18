@@ -83,12 +83,15 @@ function Test(babel: any) {
                 state.isDoneAddingImport = true;
               }
               if (state.lineNoWhereCallNeedToBeAdded) {
-                state.lineNoWhereCallNeedToBeAdded = {
-                  ...state.lineNoWhereCallNeedToBeAdded,
-                  [commentObj.loc.start.line]: {
-                    done: false,
-                  },
-                };
+                state.lineNoWhereCallNeedToBeAdded = Object.assign(
+                  {},
+                  state.lineNoWhereCallNeedToBeAdded,
+                  {
+                    [commentObj.loc.start.line]: {
+                      done: false,
+                    },
+                  }
+                );
               } else {
                 state.lineNoWhereCallNeedToBeAdded = {
                   [commentObj.loc.start.line]: {

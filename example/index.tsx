@@ -18,7 +18,7 @@ const App = () => {
   // uwc-debug
   React.useEffect(() => {
     console.log('I will run on every render');
-  }, [b]);
+  }, [b, a]);
 
   // uwc-debug
   React.useCallback(() => {
