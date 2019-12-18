@@ -123,4 +123,4 @@ function Test(babel: any) {
   };
 }
 
-module.exports = Test;
+export default Test;
