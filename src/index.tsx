@@ -90,7 +90,15 @@ function Test(babel: any) {
                 path.unshiftContainer('body', ast);
                 state.isDoneAddingImport = true;
               }
-              if (isObject(state.lineNoWhereCallNeedToBeAdded)) {
+              console.log('state', state);
+              console.log(
+                'state.lineNoWhereCallNeedToBeAdded',
+                state.lineNoWhereCallNeedToBeAdded
+              );
+              if (
+                isObject(state) &&
+                isObject(state.lineNoWhereCallNeedToBeAdded)
+              ) {
                 state.lineNoWhereCallNeedToBeAdded = Object.assign(
                   {},
                   state.lineNoWhereCallNeedToBeAdded,
