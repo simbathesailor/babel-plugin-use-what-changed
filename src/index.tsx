@@ -39,8 +39,12 @@ function Test(babel: any) {
                 const parentMemberCallExpression = path.findParent(
                   (path: any) => path.isCallExpression()
                 );
+                const bodyPath = path.findParent(
+                  (path: any) => path.parent.type === 'BlockStatement'
+                );
 
                 const parentNode = parentMemberCallExpression.node;
+
                 const dependencyArgs = parentNode.arguments[1];
                 if (dependencyArgs) {
                   if (
@@ -66,8 +70,28 @@ function Test(babel: any) {
                     state.lineNoWhereCallNeedToBeAdded[
                       lineNo
                     ].collectionNames = collectedNames;
+                    try {
+                      // path.unshiftContainer('body', useWhatChangedAst);
+                      bodyPath.insertBefore(useWhatChangedAst);
+                      // console.log(
+                      //   'bodyPath.get(body)',
+                      //   bodyPath.unshiftContainer
+                      // );
+                      // bodyPath.insertBefore(useWhatChangedAst);
+                      // bodyPath.unshiftContainer()
 
-                    parentMemberCallExpression.insertBefore(useWhatChangedAst);
+                      // bodyPath.pushContainer('body', useWhatChangedAst);
+                      // // bodyPath.node.body.splice((bodyPath.node.body.length - 2), 2, )
+                      // console.log(
+                      //   'TCL: Identifier -> bodyPath.listKey',
+                      //   bodyPath.listKey
+                      // );
+                      // .get('body')
+                      // .unshiftContainer('body', useWhatChangedAst);
+                    } catch (e) {
+                      console.log('parentMemberCallExpressione', e);
+                    }
+
                     state.lineNoWhereCallNeedToBeAdded[lineNo].done = true;
                   }
                 }
@@ -80,46 +104,49 @@ function Test(babel: any) {
       Program: {
         exit: function() {},
         enter: function(path: any, state: any) {
-          path.container.comments.forEach((commentObj: any) => {
-            if (commentObj.value.trim() === 'uwc-debug') {
-              if (!(state.myOwn === 'doneAddingImport')) {
-                const ast = buildRequire({
-                  IMPORT_NAME: t.identifier(
-                    'simbathesailor_useWhatChangedImport'
-                  ),
-                  SOURCE: t.stringLiteral('@simbathesailor/use-what-changed'),
-                });
+          try {
+            path.container.comments.forEach((commentObj: any) => {
+              if (commentObj.value.trim() === 'uwc-debug') {
+                if (!state.isDoneAddingImport) {
+                  const ast = buildRequire({
+                    IMPORT_NAME: t.identifier(
+                      'simbathesailor_useWhatChangedImport'
+                    ),
+                    SOURCE: t.stringLiteral('@simbathesailor/use-what-changed'),
+                  });
+                  try {
+                    path.unshiftContainer('body', ast);
+                  } catch (e) {
+                    console.log('error adding import to body');
+                  }
 
-                path.unshiftContainer('body', ast);
-                state.isDoneAddingImport = true;
-              }
-              console.log('state', state);
-              console.log(
-                'state.lineNoWhereCallNeedToBeAdded',
-                state.lineNoWhereCallNeedToBeAdded
-              );
-              if (
-                isObject(state) &&
-                isObject(state.lineNoWhereCallNeedToBeAdded)
-              ) {
-                state.lineNoWhereCallNeedToBeAdded = Object.assign(
-                  {},
-                  state.lineNoWhereCallNeedToBeAdded,
-                  {
+                  state.isDoneAddingImport = true;
+                }
+                if (
+                  isObject(state) &&
+                  isObject(state.lineNoWhereCallNeedToBeAdded)
+                ) {
+                  state.lineNoWhereCallNeedToBeAdded = Object.assign(
+                    {},
+                    state.lineNoWhereCallNeedToBeAdded,
+                    {
+                      [commentObj.loc.start.line]: {
+                        done: false,
+                      },
+                    }
+                  );
+                } else {
+                  state.lineNoWhereCallNeedToBeAdded = {
                     [commentObj.loc.start.line]: {
                       done: false,
                     },
-                  }
-                );
-              } else {
-                state.lineNoWhereCallNeedToBeAdded = {
-                  [commentObj.loc.start.line]: {
-                    done: false,
-                  },
-                };
+                  };
+                }
               }
-            }
-          });
+            });
+          } catch (e) {
+            console.log('error', e);
+          }
         },
       },
     },

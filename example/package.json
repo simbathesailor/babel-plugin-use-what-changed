@@ -8,7 +8,7 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "@simbathesailor/use-what-changed": "^0.1.13",
+    "@simbathesailor/use-what-changed": "^0.1.15",
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {
