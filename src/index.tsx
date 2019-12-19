@@ -1,4 +1,5 @@
 import template from 'babel-template';
+import generate from '@babel/generator';
 import * as babylon from 'babylon';
 
 process.env.BABEL_DISABLE_CACHE = '1';
@@ -46,24 +47,36 @@ function Test(babel: any) {
                 const parentNode = parentMemberCallExpression.node;
 
                 const dependencyArgs = parentNode.arguments[1];
+                // console.log('generate(elem)', generate(dependencyArgs).code);
                 if (dependencyArgs) {
                   if (
                     dependencyArgs.type === 'ArrayExpression' &&
                     dependencyArgs.elements.length > 0
                   ) {
-                    const collectedNames = dependencyArgs.elements.reduce(
-                      (acc: any, elem: any) => {
-                        acc.push(elem.name);
-                        return acc;
-                      },
-                      []
-                    );
+                    const collectedNames = generate(dependencyArgs).code;
+                    // const collectedNames = dependencyArgs.elements.reduce(
+                    //   (acc: any, elem: any) => {
+                    //     // if(t.isIdentifier(elem)) {
+                    //     //   acc.push(elem.name);
+                    //     // }
 
+                    //     acc.push(elem.name);
+                    //     return acc;
+                    //   },
+                    //   []
+                    // );
+
+                    // const templateuseWhatChangedFUnctionCall = `
+                    // ____useWhatChanged([${collectedNames.join(
+                    //   ','
+                    // )}], "${collectedNames.join(',')}")
+                    // `;
                     const templateuseWhatChangedFUnctionCall = `
-                    ____useWhatChanged([${collectedNames.join(
-                      ','
-                    )}], "${collectedNames.join(',')}")
-                    `;
+                     ____useWhatChanged(${collectedNames},"${collectedNames.slice(
+                      1,
+                      -1
+                    )}")
+                     `;
                     const useWhatChangedAst = babylon.parse(
                       templateuseWhatChangedFUnctionCall
                     );
@@ -73,21 +86,6 @@ function Test(babel: any) {
                     try {
                       // path.unshiftContainer('body', useWhatChangedAst);
                       bodyPath.insertBefore(useWhatChangedAst);
-                      // console.log(
-                      //   'bodyPath.get(body)',
-                      //   bodyPath.unshiftContainer
-                      // );
-                      // bodyPath.insertBefore(useWhatChangedAst);
-                      // bodyPath.unshiftContainer()
-
-                      // bodyPath.pushContainer('body', useWhatChangedAst);
-                      // // bodyPath.node.body.splice((bodyPath.node.body.length - 2), 2, )
-                      // console.log(
-                      //   'TCL: Identifier -> bodyPath.listKey',
-                      //   bodyPath.listKey
-                      // );
-                      // .get('body')
-                      // .unshiftContainer('body', useWhatChangedAst);
                     } catch (e) {
                       console.log('parentMemberCallExpressione', e);
                     }

@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import './styles.css';
 
 const { useMemo } = React;
-// sljkbshbkjmd
+// sljkjd
 function Child1(props) {
   const { c, d } = props;
   // uwc-debug
@@ -45,10 +45,12 @@ function App() {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
 
+  const myObj = { a: 'a', b: 'd' };
+  const myArr = ['a', 'b', 'c'];
   // uwc-debug
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
-  }, [a, b]);
+  }, [a, b, myObj.a.g]);
 
   // useWhat  Changed();
   // useWhatChanged([]);
