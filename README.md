@@ -36,19 +36,16 @@ Now to debug a useEffect, useMemo or useCallback. You can do something like this
 
 ```jsx
 // uwc-debug
-
 React.useEffect(() => {
   // console.log("some thing changed , need to figure out")
 }, [a, b, c, d]);
 
 // uwc-debug
-
 const d = React.useCallback(() => {
   // console.log("some thing changed , need to figure out")
 }, [a, b, d]);
 
 // uwc-debug
-
 const d = React.useMemo(() => {
   // console.log("some thing changed , need to figure out")
 }, [a]);
