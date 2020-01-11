@@ -1,4 +1,11 @@
 {
-  "plugins": ["../dist/index.js"],
+  "plugins": [
+    [
+      "../dist/index.js",
+      {
+        "active": true
+      }
+    ]
+  ],
   "comments": true
 }

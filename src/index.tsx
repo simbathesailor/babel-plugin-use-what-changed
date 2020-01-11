@@ -27,6 +27,7 @@ function Test(babel: any) {
   return {
     visitor: {
       Identifier(path: any, state: any) {
+        if (!state.opts.active) return;
         if (
           SetToSupport.indexOf(path.node.name) !== -1 &&
           isObject(state.lineNoWhereCallNeedToBeAdded)
@@ -102,6 +103,7 @@ function Test(babel: any) {
       Program: {
         exit: function() {},
         enter: function(path: any, state: any) {
+          if (!state.opts.active) return;
           try {
             path.container.comments.forEach((commentObj: any) => {
               if (commentObj.value.trim() === 'uwc-debug') {
