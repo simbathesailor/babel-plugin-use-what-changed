@@ -54,7 +54,14 @@ function Test(babel: any) {
                     dependencyArgs.type === 'ArrayExpression' &&
                     dependencyArgs.elements.length > 0
                   ) {
-                    const collectedNames = generate(dependencyArgs).code;
+                    const collectedNames = generate(dependencyArgs, {
+                      shouldPrintComment: () => false,
+                    }).code;
+
+                    // console.log(
+                    //   'TCL: Identifier -> collectedNames',
+                    //   generate(dependencyArgs)
+                    // );
                     // const collectedNames = dependencyArgs.elements.reduce(
                     //   (acc: any, elem: any) => {
                     //     // if(t.isIdentifier(elem)) {
