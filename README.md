@@ -58,6 +58,14 @@ const d = React.useMemo(() => {
 }, [a]);
 ```
 
+### uwc-debug-below
+
+Can use 'usc-debug-below' comment to enable the debugging below the specific line.
+
+Now, you can also see the file name with the hook name. E.g
+
+2 useCallback::example/index.tsx 🧐👇
+
 No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
 
-<strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
+<strong>Note: The whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
