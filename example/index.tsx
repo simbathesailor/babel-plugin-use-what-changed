@@ -1,16 +1,17 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import Sample from './Sample';
 import './styles.css';
-
+//ljknjuwc-debug-below
 const { useMemo } = React;
-// skjhbbd
+// skjhjbjjhjvbh
 function Child1(props) {
   const { c, d } = props;
-  // uwc-debug
+  // uwc-debugsxa
   React.useEffect(() => {}, [c, d]);
 
-  // uwc-debug
+  // uwc-debugsads
   // const testFn = React.useCallback(() => {}, ['a', 'b']);
   return (
     <div className="child1">
@@ -40,14 +41,14 @@ function App() {
   const [c, setC] = React.useState(0);
   const [d, setD] = React.useState(0);
 
-  // uwc-debug
+  // uwc-debugsasd
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
 
   const myObj = { a: 'a', b: 'd' };
   const myArr = ['a', 'b', 'c'];
-  // uwc-debug
+  // uwc-debugsdads
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, myObj.a.g]);
@@ -55,12 +56,13 @@ function App() {
   // useWhat  Changed();
   // useWhatChanged([]);
 
-  // uwc-debug
+  // uwc-debugsdasd
+  // uwc-debug-below
   const m = useMemo(() => {
     console.log('hi');
   }, [a]);
 
-  // uwc-debug
+  // uwc-debugjnjkk
   const testFnCallback = React.useCallback(() => {
     console.log('test fn');
   }, [d, c]);
@@ -137,6 +139,7 @@ function App() {
         <Child1 c={c} d={d}></Child1>
         <Child2 a={a}></Child2>
       </div>
+      <Sample></Sample>
     </div>
   );
 }

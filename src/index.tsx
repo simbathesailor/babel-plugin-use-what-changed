@@ -1,6 +1,9 @@
 import template from 'babel-template';
 import generate from '@babel/generator';
 import * as babylon from 'babylon';
+import path from 'path';
+
+const nodePath = path;
 
 process.env.BABEL_DISABLE_CACHE = '1';
 // import generate from 'babel-generator';
@@ -22,6 +25,79 @@ const buildRequire = template(`
 
 const SetToSupport = ['useEffect', 'useCallback', 'useMemo'];
 
+function transformCode({
+  lineNo,
+  state,
+  path,
+}: {
+  lineNo: any;
+  state: any;
+  path: any;
+}) {
+  // console.log('TCL: Identifier -> lineNoWhereCallNeedToBeAdded', lineNo);
+  const parentMemberCallExpression = path.findParent((path: any) =>
+    path.isCallExpression()
+  );
+  if (!parentMemberCallExpression) {
+    // return is the it is not a call expression
+    return;
+  }
+  const bodyPath = path.findParent(
+    (path: any) => path.parent.type === 'BlockStatement'
+  );
+
+  const parentNode = parentMemberCallExpression.node;
+
+  const dependencyArgs = parentNode.arguments[1];
+  if (dependencyArgs) {
+    if (
+      dependencyArgs.type === 'ArrayExpression' &&
+      dependencyArgs.elements.length > 0
+    ) {
+      const collectedNames = generate(dependencyArgs, {
+        shouldPrintComment: () => false,
+      }).code;
+      // const parsedPath = nodePath.parse(state.file.opts.filename);
+      // console.log('current working directory', path.node.loc.start.line);
+
+      // const currentWorkingDirectory = nodePath
+      //   .dirname(state.file.opts.filename)
+      //   .split(nodePath.sep)
+      //   .pop();
+      const splittedPath = state.file.opts.filename.split(nodePath.sep);
+      const templateuseWhatChangedFUnctionCall = `
+       ____useWhatChanged(${collectedNames},"${collectedNames.slice(
+        1,
+        -1
+      )}", "${path.node.name}::${splittedPath.slice(-2).join('/')}")
+       `;
+      const useWhatChangedAst = babylon.parse(
+        templateuseWhatChangedFUnctionCall
+      );
+      if (
+        state.lineNoWhereCallNeedToBeAdded &&
+        state.lineNoWhereCallNeedToBeAdded[lineNo]
+      ) {
+        state.lineNoWhereCallNeedToBeAdded[
+          lineNo
+        ].collectionNames = collectedNames;
+      }
+
+      try {
+        // path.unshiftContainer('body', useWhatChangedAst);
+        bodyPath.insertBefore(useWhatChangedAst);
+      } catch (e) {
+        console.error('@simbathesailor-uwc-debug error', e);
+      }
+      if (
+        state.lineNoWhereCallNeedToBeAdded &&
+        state.lineNoWhereCallNeedToBeAdded[lineNo]
+      ) {
+        state.lineNoWhereCallNeedToBeAdded[lineNo].done = true;
+      }
+    }
+  }
+}
 function Test(babel: any) {
   const { types: t } = babel;
   return {
@@ -29,87 +105,52 @@ function Test(babel: any) {
       Identifier(path: any, state: any) {
         if (!state.opts.active) return;
         if (
-          SetToSupport.indexOf(path.node.name) !== -1 &&
-          isObject(state.lineNoWhereCallNeedToBeAdded)
+          SetToSupport.indexOf(path.node.name) !== -1
+          // isObject(state.lineNoWhereCallNeedToBeAdded)
         ) {
-          Object.keys(state.lineNoWhereCallNeedToBeAdded).forEach(lineNo => {
-            if (!state.lineNoWhereCallNeedToBeAdded[lineNo].done) {
-              if (
-                parseInt(path.node.loc.start.line, 10) ===
-                parseInt(lineNo) + 1
-              ) {
-                const parentMemberCallExpression = path.findParent(
-                  (path: any) => path.isCallExpression()
-                );
-                const bodyPath = path.findParent(
-                  (path: any) => path.parent.type === 'BlockStatement'
-                );
+          // Handling the uwc-debug-below
+          if (
+            state.lowerlimituwcdebug !== undefined &&
+            parseInt(path.node.loc.start.line, 10) > state.lowerlimituwcdebug
+          ) {
+            const lineToInsert = parseInt(path.node.loc.start.line, 10) - 1;
+            transformCode({
+              lineNo: lineToInsert,
+              path,
+              state,
+            });
+            if (!state.lineNoWhereCallNeedToBeAdded) {
+              state.lineNoWhereCallNeedToBeAdded = {};
+            }
+            if (!state.lineNoWhereCallNeedToBeAdded[lineToInsert]) {
+              state.lineNoWhereCallNeedToBeAdded = {
+                [lineToInsert]: {
+                  done: false,
+                },
+              };
+            }
 
-                const parentNode = parentMemberCallExpression.node;
-
-                const dependencyArgs = parentNode.arguments[1];
-                // console.log('generate(elem)', generate(dependencyArgs).code);
-                if (dependencyArgs) {
-                  if (
-                    dependencyArgs.type === 'ArrayExpression' &&
-                    dependencyArgs.elements.length > 0
-                  ) {
-                    const collectedNames = generate(dependencyArgs, {
-                      shouldPrintComment: () => false,
-                    }).code;
-
-                    // console.log(
-                    //   'TCL: Identifier -> collectedNames',
-                    //   generate(dependencyArgs)
-                    // );
-                    // const collectedNames = dependencyArgs.elements.reduce(
-                    //   (acc: any, elem: any) => {
-                    //     // if(t.isIdentifier(elem)) {
-                    //     //   acc.push(elem.name);
-                    //     // }
-
-                    //     acc.push(elem.name);
-                    //     return acc;
-                    //   },
-                    //   []
-                    // );
-
-                    // const templateuseWhatChangedFUnctionCall = `
-                    // ____useWhatChanged([${collectedNames.join(
-                    //   ','
-                    // )}], "${collectedNames.join(',')}")
-                    // `;
-                    const templateuseWhatChangedFUnctionCall = `
-                     ____useWhatChanged(${collectedNames},"${collectedNames.slice(
-                      1,
-                      -1
-                    )}")
-                     `;
-                    const useWhatChangedAst = babylon.parse(
-                      templateuseWhatChangedFUnctionCall
-                    );
-                    state.lineNoWhereCallNeedToBeAdded[
-                      lineNo
-                    ].collectionNames = collectedNames;
-                    try {
-                      // path.unshiftContainer('body', useWhatChangedAst);
-                      bodyPath.insertBefore(useWhatChangedAst);
-                    } catch (e) {
-                      console.log('parentMemberCallExpressione', e);
-                    }
-
-                    state.lineNoWhereCallNeedToBeAdded[lineNo].done = true;
-                  }
+            state.lineNoWhereCallNeedToBeAdded[lineToInsert].done = true;
+          }
+          if (isObject(state.lineNoWhereCallNeedToBeAdded)) {
+            Object.keys(state.lineNoWhereCallNeedToBeAdded).forEach(lineNo => {
+              if (!state.lineNoWhereCallNeedToBeAdded[lineNo].done) {
+                if (
+                  parseInt(path.node.loc.start.line, 10) ===
+                  parseInt(lineNo) + 1
+                ) {
+                  transformCode({ lineNo, state, path });
                 }
               }
-            }
-          });
+            });
+          }
         }
       },
 
       Program: {
         exit: function() {},
         enter: function(path: any, state: any) {
+          let uwcDebugBelowEncountered = false;
           if (!state.opts.active) return;
           try {
             path.container.comments.forEach((commentObj: any) => {
@@ -124,11 +165,15 @@ function Test(babel: any) {
                   try {
                     path.unshiftContainer('body', ast);
                   } catch (e) {
-                    console.log('error adding import to body');
+                    console.error(
+                      '@simbathesailor-uwc-debug error adding import',
+                      e
+                    );
                   }
 
                   state.isDoneAddingImport = true;
                 }
+
                 if (
                   isObject(state) &&
                   isObject(state.lineNoWhereCallNeedToBeAdded)
@@ -150,9 +195,37 @@ function Test(babel: any) {
                   };
                 }
               }
+              // Need to add logic for uwc-debug-below
+              if (
+                commentObj.value.trim() === 'uwc-debug-below' &&
+                !uwcDebugBelowEncountered
+              ) {
+                ////
+                if (!state.isDoneAddingImport) {
+                  const ast = buildRequire({
+                    IMPORT_NAME: t.identifier(
+                      'simbathesailor_useWhatChangedImport'
+                    ),
+                    SOURCE: t.stringLiteral('@simbathesailor/use-what-changed'),
+                  });
+                  try {
+                    path.unshiftContainer('body', ast);
+                  } catch (e) {
+                    console.error(
+                      '@simbathesailor-uwc-debug error adding import',
+                      e
+                    );
+                  }
+
+                  state.isDoneAddingImport = true;
+                }
+                ////
+                state.lowerlimituwcdebug = commentObj.loc.start.line;
+                uwcDebugBelowEncountered = true;
+              }
             });
           } catch (e) {
-            console.log('error', e);
+            console.error('@simbathesailor-uwc-debug error', e);
           }
         },
       },
