@@ -68,4 +68,4 @@ Now, you can also see the file name with the hook name. E.g
 
 No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
 
-<strong>Note: The whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
+<strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Definitely using this custom hook with babel plugin have saved me a lot of time and also understand unknown code using hooks</strong>

@@ -55,14 +55,14 @@ function App() {
 
   // useWhat  Changed();
   // useWhatChanged([]);
-
+  // sxauwc-debug-below
   // uwc-debugsdasd
-  // uwc-debug-below
   const m = useMemo(() => {
     console.log('hi');
   }, [a]);
 
   // uwc-debugjnjkk
+
   const testFnCallback = React.useCallback(() => {
     console.log('test fn');
   }, [d, c]);

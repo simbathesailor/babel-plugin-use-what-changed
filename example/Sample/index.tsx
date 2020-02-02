@@ -6,6 +6,7 @@ function Test(props) {
   React.useEffect(() => {}, [c, d]);
 
   //onuwc-debug-below
+  // uwc-debug-below
   React.useEffect(() => {}, [a, m]);
   return <div>Hello TEST</div>;
 }
