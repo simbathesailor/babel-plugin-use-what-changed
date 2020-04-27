@@ -48,5 +48,10 @@
     "babel-traverse": "^6.26.0",
     "babel-types": "^6.26.0",
     "babylon": "^6.18.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simbathesailor/babel-plugin-use-what-changed"
+  },
+  "homepage": "https://github.com/simbathesailor/babel-plugin-use-what-changed#readme"
 }
