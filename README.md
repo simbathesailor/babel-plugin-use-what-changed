@@ -60,7 +60,24 @@ const d = React.useMemo(() => {
 
 ### uwc-debug-below
 
-Can use 'usc-debug-below' comment to enable the debugging below the specific line.
+Can use 'uwc-debug-below' comment to enable the debugging below the specific line.
+
+```jsx
+// uwc-debug-below
+React.useEffect(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, c, d]);
+
+const d = React.useCallback(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, d]);
+
+const d = React.useMemo(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a]);
+```
+
+All the react hooks below 'uwc-debug-below' will now be in debug mode.
 
 Now, you can also see the file name with the hook name. E.g
 
