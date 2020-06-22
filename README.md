@@ -79,10 +79,12 @@ const d = React.useMemo(() => {
 
 All the react hooks below 'uwc-debug-below' will now be in debug mode.
 
+**UPDATE**
+
 Now, you can also see the file name with the hook name. E.g
 
-2 useCallback::example/index.tsx 🧐👇
+> 2 useCallback::example/index.tsx 🧐👇
 
-No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
+No need to add any import for use-what-changed, you just need to add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
 
 <strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Definitely using this custom hook with babel plugin have saved me a lot of time and also understand unknown code using hooks</strong>
