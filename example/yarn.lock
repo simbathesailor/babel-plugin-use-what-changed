@@ -755,10 +755,10 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
-"@simbathesailor/use-what-changed@^0.1.21":
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/@simbathesailor/use-what-changed/-/use-what-changed-0.1.21.tgz#d7491262ee75a8d72610c7000e27f51b8a64f602"
-  integrity sha512-qKICSqI9KcVfjezIuFpj6EJdNtof5RgIqjv8yALqo07TzswXfGQM6iiJGymoopVcOPJDN8EXOuKKgBsVO+d3sw==
+"@simbathesailor/use-what-changed@^0.1.22":
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/@simbathesailor/use-what-changed/-/use-what-changed-0.1.22.tgz#2e063067846e720c19db88dac8488db7750db9f9"
+  integrity sha512-HH1KYiYkNj9O36LP/Kbd+ACxmIPW5aBxyd6kieF3V1SFvvkm0WymxDm3bJWZHLAtpvkFWNrFhp4qkJ4Oz9nv1w==
 
 "@types/prop-types@*":
   version "15.7.3"

@@ -51,8 +51,8 @@ function transformCode({
   const dependencyArgs = parentNode.arguments[1];
   if (dependencyArgs) {
     if (
-      dependencyArgs.type === 'ArrayExpression' &&
-      dependencyArgs.elements.length > 0
+      dependencyArgs.type === 'ArrayExpression'
+      // dependencyArgs.elements.length > 0
     ) {
       const collectedNames = generate(dependencyArgs, {
         shouldPrintComment: () => false,

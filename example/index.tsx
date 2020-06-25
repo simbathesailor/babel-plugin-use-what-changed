@@ -8,7 +8,11 @@ const { useMemo } = React;
 // skjhjbjjhjvbh
 function Child1(props) {
   const { c, d } = props;
-  // uwc-debugsxa
+
+  // uwc-debug
+  React.useEffect(() => {}, []);
+
+  // uwc-debug
   React.useEffect(() => {}, [c, d]);
 
   // uwc-debugsads
@@ -41,7 +45,7 @@ function App() {
   const [c, setC] = React.useState(0);
   const [d, setD] = React.useState(0);
 
-  // uwc-debugsasd
+  // uwc-debugsas
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
@@ -56,7 +60,7 @@ function App() {
   // useWhat  Changed();
   // useWhatChanged([]);
   // sxauwc-debug-below
-  // uwc-debugsdasd
+  // uwc-debug
   const m = useMemo(() => {
     console.log('hi');
   }, [a]);
