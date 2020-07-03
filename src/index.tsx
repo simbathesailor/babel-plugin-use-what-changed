@@ -111,7 +111,8 @@ function Test(babel: any) {
           // Handling the uwc-debug-below
           if (
             state.lowerlimituwcdebug !== undefined &&
-            parseInt(path.node.loc.start.line, 10) > state.lowerlimituwcdebug
+            parseInt(path?.node?.loc?.start?.line, 10) >
+              state.lowerlimituwcdebug
           ) {
             const lineToInsert = parseInt(path.node.loc.start.line, 10) - 1;
             transformCode({
@@ -136,7 +137,7 @@ function Test(babel: any) {
             Object.keys(state.lineNoWhereCallNeedToBeAdded).forEach(lineNo => {
               if (!state.lineNoWhereCallNeedToBeAdded[lineNo].done) {
                 if (
-                  parseInt(path.node.loc.start.line, 10) ===
+                  parseInt(path?.node?.loc?.start?.line, 10) ===
                   parseInt(lineNo) + 1
                 ) {
                   transformCode({ lineNo, state, path });
