@@ -1,6 +1,6 @@
 # babel-plugin-use-what-changed
 
-This babel plugin us used with [@simbathesailor/use-what-changed](https://github.com/simbathesailor/babel-plugin-use-what-changed).
+This babel plugin us used with [@simbathesailor/use-what-changed](https://github.com/simbathesailor/use-what-changed).
 
 ## Usage
 
