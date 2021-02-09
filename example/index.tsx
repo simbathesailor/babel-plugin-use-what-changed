@@ -8,6 +8,7 @@ const { useMemo } = React;
 // skjhjbjjhjvbh
 function Child1(props) {
   const { c, d } = props;
+  
 
   // uwc-debug
   React.useEffect(() => {}, []);
@@ -15,7 +16,12 @@ function Child1(props) {
   // uwc-debug
   React.useEffect(() => {}, [c, d]);
 
-  // uwc-debugsads
+  // uwc-debug
+  React.useLayoutEffect(() => {}, [d]);
+
+  
+
+  // uwc-debugsadsaasadsasa
   // const testFn = React.useCallback(() => {}, ['a', 'b']);
   return (
     <div className="child1">
@@ -55,7 +61,7 @@ function App() {
   // uwc-debugsdads
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
-  }, [a, b, myObj.a.g]);
+  }, [a, b, myObj.a]);
 
   // useWhat  Changed();
   // useWhatChanged([]);
