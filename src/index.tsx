@@ -23,7 +23,7 @@ const buildRequire = template(`
   var ____useWhatChanged = IMPORT_NAME.useWhatChanged
 `);
 
-const SetToSupport = ['useEffect', 'useCallback', 'useMemo'];
+const SetToSupport = ['useEffect', 'useCallback', 'useMemo', 'useLayoutEffect'];
 
 function transformCode({
   lineNo,
@@ -38,6 +38,7 @@ function transformCode({
   const parentMemberCallExpression = path.findParent((path: any) =>
     path.isCallExpression()
   );
+
   if (!parentMemberCallExpression) {
     // return is the it is not a call expression
     return;
@@ -71,6 +72,7 @@ function transformCode({
         -1
       )}", "${path.node.name}::${splittedPath.slice(-2).join('/')}")
        `;
+
       const useWhatChangedAst = babylon.parse(
         templateuseWhatChangedFUnctionCall
       );
@@ -103,6 +105,7 @@ function Test(babel: any) {
   return {
     visitor: {
       Identifier(path: any, state: any) {
+        console.log('Identifier -> path', path);
         if (!state.opts.active) return;
         if (
           SetToSupport.indexOf(path.node.name) !== -1
