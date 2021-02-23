@@ -1,6 +1,6 @@
 {
   "name": "@simbathesailor/babel-plugin-use-what-changed",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "license": "MIT",
   "author": "simbathesailor",
   "main": "dist/index.js",
@@ -16,7 +16,8 @@
     "lint": "tsdx lint"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "@simbathesailor/use-what-changed":"1.x" 
   },
   "husky": {
     "hooks": {
