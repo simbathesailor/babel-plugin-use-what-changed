@@ -105,7 +105,7 @@ function Test(babel: any) {
   return {
     visitor: {
       Identifier(path: any, state: any) {
-        console.log('Identifier -> path', path);
+        // console.log('Identifier -> path', path);
         if (!state.opts.active) return;
         if (
           SetToSupport.indexOf(path.node.name) !== -1
