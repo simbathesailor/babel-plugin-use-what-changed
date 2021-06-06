@@ -3,23 +3,28 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Sample from './Sample';
 import './styles.css';
-//ljknjuwc-debug-below
+//ljknsxcscadjuwc-debug-below
 const { useMemo } = React;
 // skjhjbjjhjvbh
 function Child1(props) {
   const { c, d } = props;
-  
+
+  const finalObject = { a: 3 };
+  const isSelectedValueInOption = [{ a: 1 }, { a: 2 }]?.find(each => {
+    return each.a === finalObject.a;
+  });
+  const obj = {
+    h: 2,
+  };
 
   // uwc-debug
   React.useEffect(() => {}, []);
 
   // uwc-debug
-  React.useEffect(() => {}, [c, d]);
+  React.useEffect(() => {}, [c, d, isSelectedValueInOption?.a]);
 
   // uwc-debug
   React.useLayoutEffect(() => {}, [d]);
-
-  
 
   // uwc-debugsadsaasadsasa
   // const testFn = React.useCallback(() => {}, ['a', 'b']);

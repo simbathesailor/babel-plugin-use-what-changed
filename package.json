@@ -16,8 +16,8 @@
     "lint": "tsdx lint"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "@simbathesailor/use-what-changed": "1.x"
+    "@simbathesailor/use-what-changed": "2.x",
+    "react": ">=16"
   },
   "husky": {
     "hooks": {
@@ -37,12 +37,13 @@
     "husky": "^3.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "tsdx": "^0.13.2",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.3",
-    "tsdx": "^0.13.2"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "@babel/generator": "^7.7.7",
+    "@babel/parser": "^7.14.4",
     "@babel/types": "^7.7.4",
     "@types/babel-template": "^6.25.2",
     "babel-template": "^6.26.0",

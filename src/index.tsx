@@ -1,6 +1,6 @@
 import template from 'babel-template';
 import generate from '@babel/generator';
-import * as babylon from 'babylon';
+import * as babelParser from '@babel/parser';
 import path from 'path';
 
 const nodePath = path;
@@ -48,6 +48,9 @@ function transformCode({
   );
 
   const parentNode = parentMemberCallExpression.node;
+  const collectedNamesCode = generate(parentNode, {
+    shouldPrintComment: () => false,
+  }).code;
 
   const dependencyArgs = parentNode.arguments[1];
   if (dependencyArgs) {
@@ -73,7 +76,7 @@ function transformCode({
       )}", "${path.node.name}::${splittedPath.slice(-2).join('/')}")
        `;
 
-      const useWhatChangedAst = babylon.parse(
+      const useWhatChangedAst = babelParser.parse(
         templateuseWhatChangedFUnctionCall
       );
       if (
