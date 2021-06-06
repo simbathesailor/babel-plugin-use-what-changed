@@ -48,9 +48,6 @@ function transformCode({
   );
 
   const parentNode = parentMemberCallExpression.node;
-  const collectedNamesCode = generate(parentNode, {
-    shouldPrintComment: () => false,
-  }).code;
 
   const dependencyArgs = parentNode.arguments[1];
   if (dependencyArgs) {
